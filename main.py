@@ -37,13 +37,34 @@ SALARY_DATA_USD = {
         "senior" : 7000,
      }
 }
+#Taking Number(Watch)
+watch_number = int(input("Please Enter A Watch Number: " ))
 
+#is he Working ?
+work_yes_no = str(input("Are You Actively Working(please enter just yes or no):"))
 
-salary = float(input("Please Enter Your Monthly Income: "))
+#If he is working take now salary
+if work_yes_no == "yes" :
+    salary = float(input("Please Enter Your Monthly Income: "))
+    
+# if he is not working take what level is he and take country    
+elif work_yes_no == "no":
+    country = str(input("Where Do You Want to Work ? (abroad or turkey) :"))
+    level = str(input("Please enter Your Level(junior-mid-senior)"))
+    
+    #Turkey Working
+    if country == "turkey" :  
+        salary_usd_dict = SALARY_DATA_USD["turkey"]
+        turkey_salary = salary_usd_dict.get(level)
+        salary = turkey_salary 
+    #Abroad Working
+    elif country == "abroad" :
+        salary_usd_dict = SALARY_DATA_USD["abroad"]
+        abroad_salary = salary_usd_dict.get(level)
+        salary = abroad_salary
+#calculate net income
 expense = float(input("Please Enter Your Monthly Expenses: "))
 net = salary - expense 
-
-watch_number = int(input("Please Enter A Watch Number: " ))
 
 price_dict = WATCH["Watch_Price"]
 price = price_dict.get(watch_number) 
